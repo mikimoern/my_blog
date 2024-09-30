@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block main %}
+  <form action="" method="post">
+      <input type="hidden" name="csrfmiddlewaretoken" value="KDXaXKY0oUqWrELDc7F0JdM5pXPEv6XBflpCVuW8DeFEwz2PAO3bfALi1y8G4Kud">
+      <p>Are you sure you want to delete article with title: "article name"?</p>
+      <div class="d-flex align-items-center">
+        <input type="submit" value="Yes, delete" class="btn btn-danger">
+        <a href="#!" class="btn btn-dark ms-3">Back</a>
+      </div>
+      
+  </form>
+  <div><div style="margin-top: 530px;"></div></div>
+{% endblock %}

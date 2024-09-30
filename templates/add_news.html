@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block main %}
+  <div class="d-flex justify-content-center">
+      <div class="card col-8 mb-4 mt-4">
+          <div class="card-body">
+              <h2 class="text-center">Add a new article</h2>
+              <form action="" method="post" enctype="multipart/form-data">
+                  <!--  Fields for filling-->
+                  <div>
+                      <input type="hidden" name="csrfmiddlewaretoken" value="1a7PHLHTRx8Sw0dH0fZEJhG0qmM6DgmHwSzhFvF16RnABVuToWnPfEFd2X58cUTj">
+                      <p>
+                          <label for="id_title">Article title:</label>
+                          <input type="text" name="title" class="form-control" maxlength="255" required id="id_title">
+                      </p>
+                      <p>
+                          <label for="id_content">Text of the article:</label>
+                          <textarea name="content" cols="40" rows="10" class="form-control" required id="id_content">Soon everything will be...</textarea>
+                      </p>
+                      <p>
+                          <label for="id_photo">Images:</label>
+                          <input type="file" name="photo" class="form-control" accept="image/*" id="id_photo">
+                      </p>
+                      <p>
+                          <label for="id_category">Category:</label>
+                          <select name="category" class="form-control" required id="id_category">
+                              <option value="" selected>---------</option>
+                              <option value="1">First category</option>
+                              <option value="2">First category</option>
+                              <option value="3">First category</option>
+                          </select>
+                      </p>
+                  </div>
+                  <button class="btn btn-dark" type="submit">Add article</button>
+              </form>
+          </div>
+      </div>
+  </div>
+  <div><div style="margin-top: 100px;"></div></div>
+{% endblock %}

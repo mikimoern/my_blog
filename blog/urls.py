@@ -2,7 +2,7 @@ from django.urls import path, re_path
 from .views import *
 
 urlpatterns = [
-    path("", main, name="main"),
+    path("", index, name="index"),
     path("my-feed/", my_feed, name="my_feed"),
     path("<int:article_id>/", article, name="article"),
     path("<int:article_id>/comment/", add_comment, name="add_comment"),

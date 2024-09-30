@@ -1,0 +1,38 @@
+.container {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+main {
+ margin: 10px 0;
+}
+
+.card {
+  margin-bottom: 10px;
+}
+
+.navbar-expand-lg .navbar-collapse {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-primary {
+  float: right;
+}
+
+/* .btn.btn-dark {
+  margin-top: 5px;
+  margin-bottom: 10px;
+} */
+
+.btn-outline-primary {
+  margin-right: 5px;
+}
+
+.row.gutters-sm {
+  align-items: center;
+}
+
+.main-body {
+  margin: 124px 0;
+}

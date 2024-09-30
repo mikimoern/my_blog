@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ title}}{% endblock %}
+
+{% block main %}
+  <h2>News portal</h2>
+  <div class="d-flex justify-content-between">
+      <div class="col-3">
+          <!-- Sidebar-->
+          <div class="list-group">
+              <a href="#!" class="list-group-item list-group-item-action">First button</a>
+              <a href="#!" class="list-group-item list-group-item-action">Second button</a>
+              <a href="#!" class="list-group-item list-group-item-action">Third button</a>
+          </div>
+      </div>
+      <!-- Posts-->
+      <div class="col-8">
+          <!-- Post-->
+          <div class="card"><div class="card-header text-center">Article category</div>
+              <div class="card-body"><h5 class="card-title text-center">Article Title</h5><p class="card-text">Short description</p><a href="#!" class="btn btn-primary">Reed more</a></div>
+              <div class="card-footer text-muted text-end">Post date</div>
+          </div>
+          <!-- Post-->
+          <div class="card"><div class="card-header text-center">Article category</div>
+              <div class="card-body"><h5 class="card-title text-center">Article Title</h5><p class="card-text">Short description</p><a href="#!" class="btn btn-primary">Reed more</a></div>
+              <div class="card-footer text-muted text-end">Post date</div>
+          </div>
+          <!-- Post-->
+          <div class="card"><div class="card-header text-center">Article category</div>
+              <div class="card-body"><h5 class="card-title text-center">Article Title</h5><p class="card-text">Short description</p><a href="#!" class="btn btn-primary">Reed more</a></div>
+              <div class="card-footer text-muted text-end">Post date</div>
+          </div>
+      </div>
+  </div>
+{% endblock %}

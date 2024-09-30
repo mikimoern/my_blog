@@ -4,8 +4,11 @@ from django.http import Http404, HttpResponse, HttpRequest
 
 
 # Create your views here.
-def main(request: HttpRequest) -> HttpResponse:
-    return HttpResponse("Hey! It's your main view!!")
+def index(request: HttpRequest) -> HttpResponse:
+    context = {
+        "title": "Main Page",
+    }
+    return render(request, "index.html", context)
 
 
 def my_feed(request: HttpRequest) -> HttpResponse:
@@ -15,7 +18,10 @@ def my_feed(request: HttpRequest) -> HttpResponse:
 
 
 def article(request: HttpRequest, article_id: int) -> HttpResponse:
-    return HttpResponse(f"This is article #{article_id}.")
+    context = {
+        "title": "Detail Page",
+    }
+    return render(request, "detail_page.html", context)
 
 
 def add_comment(request: HttpRequest, article_id: int) -> HttpResponse:
@@ -27,11 +33,17 @@ def update_article(request: HttpRequest, article_id: int) -> HttpResponse:
 
 
 def delete_article(request: HttpRequest, article_id: int) -> HttpResponse:
-    return HttpResponse(f"This is page for delete this article #{article_id}.")
+    context = {
+        "title": "Delete Page",
+    }
+    return render(request, "delete_news.html", context)
 
 
 def create_article(request: HttpRequest) -> HttpResponse:
-    return HttpResponse("This is page for create article")
+    context = {
+        "title": "Create Page",
+    }
+    return render(request, "add_news.html", context)
 
 
 def all_topics(request: HttpRequest) -> HttpResponse:
@@ -51,11 +63,17 @@ def unsubscribe_topic(request: HttpRequest, topic_id: int) -> HttpResponse:
 
 
 def profile(request: HttpRequest) -> HttpResponse:
-    return HttpResponse("Page with user data and a list of subscriptions")
+    context = {
+        "title": "Profile Page",
+    }
+    return render(request, "profile.html", context)
 
 
 def register(request: HttpRequest) -> HttpResponse:
-    return HttpResponse("New user registration page")
+    context = {
+        "title": "Register Page",
+    }
+    return render(request, "register.html", context)
 
 
 def set_password(request: HttpRequest) -> HttpResponse:
@@ -63,7 +81,10 @@ def set_password(request: HttpRequest) -> HttpResponse:
 
 
 def login_view(request: HttpRequest) -> HttpResponse:
-    return HttpResponse("Page, to enter the site")
+    context = {
+        "title": "Login Page",
+    }
+    return render(request, "login.html", context)
 
 
 def logout_view(request: HttpRequest) -> HttpResponse:
