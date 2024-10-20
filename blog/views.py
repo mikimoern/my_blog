@@ -2,12 +2,14 @@ from datetime import datetime
 from django.shortcuts import render
 from django.http import Http404, HttpResponse, HttpRequest
 
+from .models import Topic, Article
+
 
 # Create your views here.
 def index(request: HttpRequest) -> HttpResponse:
-    context = {
-        "title": "Main Page",
-    }
+    topics = Topic.objects.all()
+    articles = Article.objects.all()
+    context = {"title": "Main Page", "topics": topics, "articles": articles}
     return render(request, "index.html", context)
 
 
@@ -18,9 +20,8 @@ def my_feed(request: HttpRequest) -> HttpResponse:
 
 
 def article(request: HttpRequest, article_id: int) -> HttpResponse:
-    context = {
-        "title": "Detail Page",
-    }
+    article = Article.objects.get(pk=article_id)
+    context = {"title": "Detail Page", "article": article}
     return render(request, "detail_page.html", context)
 
 
@@ -51,7 +52,10 @@ def all_topics(request: HttpRequest) -> HttpResponse:
 
 
 def articles_by_topic(request: HttpRequest, topic_id: int) -> HttpResponse:
-    return HttpResponse("Page with all the articles on a particular topic")
+    articles = Article.objects.filter(topics_id=topic_id)
+    topics = Topic.objects.all()
+    context = {"title": articles[0].topics, "topics": topics, "articles": articles}
+    return render(request, "index.html", context)
 
 
 def subscribe_topic(request: HttpRequest, topic_id: int) -> HttpResponse:

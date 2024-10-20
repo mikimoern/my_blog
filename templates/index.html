@@ -7,29 +7,22 @@
   <div class="d-flex justify-content-between">
       <div class="col-3">
           <!-- Sidebar-->
+           {% for topic in topics %}
           <div class="list-group">
-              <a href="#!" class="list-group-item list-group-item-action">First button</a>
-              <a href="#!" class="list-group-item list-group-item-action">Second button</a>
-              <a href="#!" class="list-group-item list-group-item-action">Third button</a>
+              <a href="{% url 'articles_by_topic' topic.pk %}" class="list-group-item list-group-item-action">{{ topic }}</a>
           </div>
+          {% endfor %}
       </div>
       <!-- Posts-->
       <div class="col-8">
           <!-- Post-->
-          <div class="card"><div class="card-header text-center">Article category</div>
-              <div class="card-body"><h5 class="card-title text-center">Article Title</h5><p class="card-text">Short description</p><a href="#!" class="btn btn-primary">Reed more</a></div>
-              <div class="card-footer text-muted text-end">Post date</div>
+          {% for article in articles %}
+          <div class="card"><div class="card-header text-center">{{ article.topics }}</div>
+              <div class="card-body"><h5 class="card-title text-center">{{ article }}</h5><p class="card-text">{{ article.content | truncatewords:30 }}</p><a href="{% url 'article' article.pk %}" class="btn btn-primary">Reed more</a></div>
+              <div class="card-footer text-muted text-end">{{ article.created_at | date:"d/m/Y H:i" }}</div>
           </div>
-          <!-- Post-->
-          <div class="card"><div class="card-header text-center">Article category</div>
-              <div class="card-body"><h5 class="card-title text-center">Article Title</h5><p class="card-text">Short description</p><a href="#!" class="btn btn-primary">Reed more</a></div>
-              <div class="card-footer text-muted text-end">Post date</div>
-          </div>
-          <!-- Post-->
-          <div class="card"><div class="card-header text-center">Article category</div>
-              <div class="card-body"><h5 class="card-title text-center">Article Title</h5><p class="card-text">Short description</p><a href="#!" class="btn btn-primary">Reed more</a></div>
-              <div class="card-footer text-muted text-end">Post date</div>
-          </div>
+          {% endfor %}
+         
       </div>
   </div>
 {% endblock %}

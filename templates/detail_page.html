@@ -4,29 +4,26 @@
 
 {% block main %}
   <div class="d-flex justify-content-center"><div class="col-8">
-      <div class="card"><div class="card-header d-flex justify-content-between align-items-center">Some category
+      <div class="card"><div class="card-header d-flex justify-content-between align-items-center">{{ article.topics }}
           <div>
               <a href="#!" class="btn btn-dark">Delete</a>
               <a href="#!" class="btn btn-dark">Change</a>
               <a href="#!" class="btn btn-dark">Back</a>
           </div>
       </div>
-          <img src="" class="card-img-top" alt=""><div class="card-body">
+          <img src="" class="card-img-top" alt="">
+          
+          <div class="card-body">
+           {% if article.photo %}
+           <img src="{{article.photo.url}}" width="300" alt="article">
+           {% else %} 
           <img src="https://www.raumplus.ru/upload/iblock/99e/Skoro-zdes-budet-foto.jpg" width="300" alt="">
-          <h5 class="card-title">Title</h5>
-          <p class="card-text"><p>Этот кулинарный шедевр, несмотря на свою колоссальную популярность, не имеет однозначного рецепта приготовления, но мы постарались подобрать рецепт, который обязательно порадует вас своим вкусом.<br>Тесто для лагмана предлагаем приобрести готовое, так как процесс приготовления его не столь быстрый, как нам хотелось бы.</p>
-          <p>Ингредиенты: домашняя лапша, баранина/говядина, морковь, стебли сельдерея, красный сладкий перец, сезонные овощи, чеснок, кориандр.</p>
-          <p>Шаг 1<br>Мясо нарезать тонкими кусочками и обжарить на хорошо разогретом масле.</p>
-          <p>Шаг 2 <br>Добавить к обжаренному мясу тонко нарезанный лук. Жарить 10 минут до золотистого цвета.</p>
-          <p>Шаг 3<br>С помидоров снять шкурку, нарезать, смешать с томатной пастой и мелко рубленным чесноком. Перемешать и дать настояться.</p>
-          <p>Шаг 4 <br>К мясу и луку добавить нарезанную на кубики пекинскую капусту.</p>
-          <p>Шаг 5 <br>Следом добавить нарезанный такими же кубиками болгарский перец, редьку и обжаривать 5 минут.</p>
-          <p>Шаг 6 <br>Далее добавить помидоры с томатом и чесноком и жарить на большом огне.</p>
-          <p>Шаг 7 <br>Добавить нарезанные стебли сельдерея и стручковой фасоли.</p>
-          <p>Если любите острое, то добавить на этом этапе дунганский перец и звездочку бадьяна.</p></p>
+           {% endif %}
+          <h5 class="card-title">{{ article }}</h5>
+          <p class="card-text">{{ article.content |linebreaks }}</p>
       </div>
-          <div class="card-footer d-flex justify-content-between"><p class="card-text">4 January 2023 15:47</p>
-              <a href="/profile/1">Author of the article: Some person</a>
+          <div class="card-footer d-flex justify-content-between"><p class="card-text">{{ article.created_at | date:"d/m/Y H:i" }}</p>
+              <a href="#">Author of the article: {{ article.author }}</a>
           </div>
       </div>
       <hr>
