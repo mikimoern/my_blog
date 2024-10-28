@@ -1,8 +1,11 @@
 from datetime import datetime
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import Http404, HttpResponse, HttpRequest
 
 from .models import Topic, Article
+from .forms import ArticleAddForm, LoginForm, RegistrationForm
+from django.contrib.auth import login, logout
+from django.contrib import messages
 
 
 # Create your views here.
@@ -41,9 +44,17 @@ def delete_article(request: HttpRequest, article_id: int) -> HttpResponse:
 
 
 def create_article(request: HttpRequest) -> HttpResponse:
-    context = {
-        "title": "Create Page",
-    }
+    if request.method == "POST":
+        form = ArticleAddForm(request.POST, request.FILES)
+        if form.is_valid():
+            article = Article.objects.create(**form.cleaned_data)
+            article.save()
+            messages.success(request, "You have successfully created an article")
+            return redirect("article", article.pk)
+    else:
+        form = ArticleAddForm()
+
+    context = {"title": "Create Page", "form": form}
     return render(request, "add_news.html", context)
 
 
@@ -74,9 +85,16 @@ def profile(request: HttpRequest) -> HttpResponse:
 
 
 def register(request: HttpRequest) -> HttpResponse:
-    context = {
-        "title": "Register Page",
-    }
+    if request.method == "POST":
+        form = RegistrationForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "You have successfully registered an account")
+            return redirect("login_view")
+    else:
+        form = RegistrationForm()
+
+    context = {"title": "Register Page", "form": form}
     return render(request, "register.html", context)
 
 
@@ -85,14 +103,23 @@ def set_password(request: HttpRequest) -> HttpResponse:
 
 
 def login_view(request: HttpRequest) -> HttpResponse:
-    context = {
-        "title": "Login Page",
-    }
+    if request.method == "POST":
+        form = LoginForm(data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            messages.success(request, "You have successfully logged into your account")
+            return redirect("index")
+    else:
+        form = LoginForm()
+
+    context = {"title": "Login Page", "form": form}
     return render(request, "login.html", context)
 
 
 def logout_view(request: HttpRequest) -> HttpResponse:
-    return HttpResponse("Address to exit the site")
+    logout(request)
+    return redirect("index")
 
 
 def articles_by_month(request: HttpRequest, year: int, month: int) -> HttpResponse:

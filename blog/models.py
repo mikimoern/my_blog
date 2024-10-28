@@ -18,7 +18,7 @@ class Article(models.Model):
     photo = models.ImageField(upload_to="photos/", blank=True, null=True)
     is_published = models.BooleanField(default=True)
     topics = models.ForeignKey(Topic, on_delete=models.CASCADE)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return self.title

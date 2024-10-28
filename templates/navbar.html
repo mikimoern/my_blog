@@ -17,18 +17,27 @@
                     </form>
                     <ul class="navbar-nav">
                         <!--  Users-->
+                        {% if not request.user.is_authenticated %}  
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{% url 'login_view' %}">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{% url 'register' %}">Register</a>
+                        </li>      
+                        {% else %}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                Hello User
+                                Hello {{request.user.username}}
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="#!">My page</a></li>
-                                <li><a class="dropdown-item" href="#!">Add article</a></li>
+                                <li><a class="dropdown-item" href="{% url 'create_article' %}">Add article</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#!">Exit</a></li>
+                                <li><a class="dropdown-item" href="{% url 'logout_view' %}">Exit</a></li>
                             </ul>
                         </li>
+                        {% endif %}
                     </ul>
                     
                 </div>

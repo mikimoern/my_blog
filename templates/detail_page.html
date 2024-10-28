@@ -22,7 +22,7 @@
           <h5 class="card-title">{{ article }}</h5>
           <p class="card-text">{{ article.content |linebreaks }}</p>
       </div>
-          <div class="card-footer d-flex justify-content-between"><p class="card-text">{{ article.created_at | date:"d/m/Y H:i" }}</p>
+          <div class="card-footer d-flex justify-content-between"><p class="card-text">{{ article.created_at | date:"d M Y H:i" }}</p>
               <a href="#">Author of the article: {{ article.author }}</a>
           </div>
       </div>
